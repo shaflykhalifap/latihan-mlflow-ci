@@ -22,9 +22,7 @@ jobs:
           python-version: 3.12       # Sesuaikan dengan conda.yaml
           environment-file: conda.yaml
           auto-activate-base: false
-
-      - name: Run MLflow project in conda env
+      - name: Run MLflow project
         run: |
-          conda run -n credit-scoring-env mlflow run . -P n_estimators=300 -P max_depth=25 -P dataset="train_pca.csv"
-
+         conda run -n credit-scoring-env --no-capture-output mlflow run . -P n_estimators=300 -P max_depth=25 -P dataset="train_pca.csv"
 
