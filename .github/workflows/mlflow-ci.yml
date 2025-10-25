@@ -19,12 +19,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12.7
 
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
-         python-version: 3.11       # sesuaikan dengan python di conda.yaml
+         python-version: 3.12.7     # sesuaikan dengan python di conda.yaml
          environment-file: conda.yaml
          auto-activate-base: false
 
