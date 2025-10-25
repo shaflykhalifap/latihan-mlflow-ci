@@ -3,7 +3,7 @@ name: MLflow CI
 on:
   push:
     branches:
-      - main   # jalankan CI/CD tiap push ke branch main
+      - main
   pull_request:
     branches:
       - main
@@ -16,20 +16,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.12.7
-
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
-         python-version: 3.12.7     # sesuaikan dengan python di conda.yaml
-         environment-file: conda.yaml
-         auto-activate-base: false
+          python-version: 3.12       # Sesuaikan dengan conda.yaml
+          environment-file: conda.yaml
+          auto-activate-base: false
 
-      - name: Activate environment and run MLflow
+      - name: Run MLflow project in conda env
         run: |
-          conda activate credit-scoring-env
-          mlflow run . -P n_estimators=300 -P max_depth=25 -P dataset="train_pca.csv"
+          conda run -n credit-scoring-env mlflow run . -P n_estimators=300 -P max_depth=25 -P dataset="train_pca.csv"
+
 
